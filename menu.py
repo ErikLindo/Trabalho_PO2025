@@ -1,35 +1,75 @@
-from classes import Usuario, TipoProtocolo
+from models import Usuario, Tema
 
-print("Cadastrando Tipo de Protocolo")
+opcao = True
+while(opcao !=4):
+    print("-------Menu--------")
+    print("1 -Usuarios")
+    print("2- Temas")
+    print("3- Artes")
+    print("4- Sair")
+    opcao = int(input("Opção desejada: "))
 
-tipo = input("Tipo de protocolo: ")
-obj1 = TipoProtocolo.create(nome=tipo)
+    if(opcao == 1):
+        print(".1 cadastro")
+        print("2 - Listar")
+        print("3- Editar")
+        print("4 - Excluir")
+        opcao = int(input("Opção desejada: "))
 
-print("Tipos de protocolo cadastrados...")
+        if(opcao == 1):
+            # Cadastrar o Usuario
+            print("Cadastrando um usuario...")
+            nome_completo = input("Nome: ")
+            ra = input("Email: ")
+            se = input("Senha: ")
+            est1 = Usuario.create(nome=nome_completo, email=ra, senha=se)
+    
+        elif(opcao == 2):
+            #Listar
+            lista=Usuario.select()
+            if(len(lista) > 0):
+                for u in lista:
+                    print(u)
+            else:
+                print("Nenhum usuario")
 
-# Listar e ordenar por nome
-lista = TipoProtocolo.select()
-lista = lista.order_by(TipoProtocolo.nome)
+        elif(opcao == 3):
+            #Editar
+            opcao = int(input("Informe o id do usuario"))
+            usu = Usuario.get_or_none(Usuario.id == opcao)
+            
+            if(usu):    
+                
+                print("Nome atual:", usu.nome)
+                nome_completo = input("Deixe vazio ou informe o novo nome: ")
+                if(nome_completo != ""):
+                    usu.nome = nome_completo
+                
 
-for tipo in lista:
-    print(tipo.nome)
+                ra = input("Email: ")
+                se = input("Senha: ")
+                usu.email =  ra
+                usu.senha = se
+                
+                usu.save()
 
-print("Cadastrando um estudante...")
-nome_completo = input("Nome: ")
-ra = input("Matrícula: ")
+            else:
+                print("Não existe")
 
-est1 = Estudante.create(nome=nome_completo, matricula=ra)
+        elif(opcao == 4): 
+            #Excluir
+            opcao = int(input("Informe o id do usuario"))
+            usu = Usuario.get_or_none(Usuario.id == opcao)
 
+            if(usu):
+                print("Nome atual:", usu.nome)
+                print("Email atual:", usu.email)
+                sn = int(input("Digita 1 para deletar ou 2 para não deletar"))
 
-# Selecionar todos os estudantes
-print("\n\n")
-print("----- Estudantes cadastrados -----")
+                if(sn == 1):
+                    usu.delete_instance()
+                
 
-# Obter uma lista de objetos do BD
-lista = Estudante.select()
-print("\nTotal de estudantes:", len(lista), "\n")
-
-# Imprime na tela cada estudante
-for objeto in lista:
-    print(f"Nome: {objeto.nome} ({objeto.matricula})")
-
+            else:
+                print("Não existe")
+            pass

@@ -11,7 +11,10 @@ class MinhaBase(Model):
 class Usuario(MinhaBase):
     nome = CharField()
     email = CharField(unique=True)
-    senha = CharField
+    senha = CharField()
+    
+    def __str__(self):
+        return f"{self.nome} ({self.email})"
 
 class Tema(MinhaBase):
     nome = CharField()
@@ -20,6 +23,7 @@ class Arte(MinhaBase):
     artista = ForeignKeyField(Usuario)
     tipo = ForeignKeyField(Tema)
     descricao = CharField()
+
 
 # Depois de criar todas as suas classes
 # Vamos criar o banco de dados e as tabelas

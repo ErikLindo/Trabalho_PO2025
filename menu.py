@@ -45,11 +45,15 @@ while(opcao !=4):
                 if(nome_completo != ""):
                     usu.nome = nome_completo
                 
-
-                ra = input("Email: ")
-                se = input("Senha: ")
-                usu.email =  ra
-                usu.senha = se
+                print("Email atual:", usu.email)
+                ra = input("Deixe vazio ou informe o novo email: ")
+                if(ra != ""):
+                    usu.email = ra
+                
+                print("Senha atual:", usu.senha)
+                se = input("Deixe vazio ou informe o novo senha: ")
+                if(ra != ""):
+                    usu.senha = se
                 
                 usu.save()
 

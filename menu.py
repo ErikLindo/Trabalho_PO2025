@@ -36,8 +36,8 @@ while(opcao !=4):
 
         elif(opcao_1 == 3):
             #Editar
-            opcao = int(input("Informe o id do usuario"))
-            usu = Usuario.get_or_none(Usuario.id == opcao)
+            codigo = int(input("Informe o id do usuario: "))
+            usu = Usuario.get_or_none(Usuario.id == codigo)
             
             if(usu):    
                 
@@ -85,3 +85,52 @@ while(opcao !=4):
         print("2- Mostrar temas já cadastrados ")
         print("3- Editar a lista de temas")
         print("4- Excluir tema")
+        opcao_2 = int(input("Selecione a opção desejada: "))
+
+        if(opcao_2 == 1):
+            # Cadastrar o Tema
+            print("Realizando o cadastro do tema...")
+            nome_completo = input("Digite seu tema: ")
+            est2 = Tema.create(nome=nome_completo)
+    
+        elif(opcao_2 == 2):
+            #Listar
+            lista=Tema.select()
+            if(len(lista) > 0):
+                for u in lista:
+                    print(u)
+            else:
+                print("Nenhum tema cadastrado ainda")
+
+        elif(opcao_2 == 3):
+            #Editar
+            codigo = int(input("Informe o id do tema: "))
+            usu = Tema.get_or_none(Tema.id == codigo)
+            
+            if(usu):    
+                
+                print("Nome do tema atual:", usu.nome)
+                nome_completo = input("Deixe vazio ou informe o novo tema: ")
+                if(nome_completo != ""):
+                    usu.nome = nome_completo
+                
+                usu.save()
+
+            else:
+                print("Não existe")
+
+        elif(opcao_2 == 4): 
+            #Excluir
+            codigo = int(input("Informe o id do tema: "))
+            usu = Tema.get_or_none(Tema.id == codigo)
+
+            if(usu):
+                print("Nome do tema atual:", usu.nome)
+                sn = int(input("Digita 1 para deletar ou 2 para não deletar"))
+
+                if(sn == 1):
+                    usu.delete_instance()
+
+            else:
+                print("Não existe")
+            pass

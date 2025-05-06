@@ -14,10 +14,12 @@ class Usuario(MinhaBase):
     senha = CharField()
     
     def __str__(self):
-        return f"{self.nome} ({self.email})"
+        return f"[{self.id}] {self.nome} ({self.email})"
 
 class Tema(MinhaBase):
     nome = CharField()
+    def __str__(self):
+        return f"[{self.id}] {self.nome}"
 
 class Arte(MinhaBase):
     artista = ForeignKeyField(Usuario)

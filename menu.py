@@ -2,38 +2,39 @@ from models import Usuario, Tema
 
 opcao = True
 while(opcao !=4):
+    print(" Seja bem vindo a ")
     print("-------Menu--------")
-    print("1 -Usuarios")
+    print("1 - Cadastrar-se no sistema")
     print("2- Temas")
-    print("3- Artes")
+    print("3- Selecionar artes")
     print("4- Sair")
-    opcao = int(input("Opção desejada: "))
+    opcao = int(input("Digite a opção desejada: "))
 
     if(opcao == 1):
-        print(".1 cadastro")
-        print("2 - Listar")
-        print("3- Editar")
-        print("4 - Excluir")
-        opcao = int(input("Opção desejada: "))
+        print(".1 cadastrar um cliente")
+        print("2 - Listar cadastros")
+        print("3- Editar dados")
+        print("4 - Excluir dados do usuario")
+        opcao_1 = int(input("Selecione a opção desejada: "))
 
-        if(opcao == 1):
+        if(opcao_1 == 1):
             # Cadastrar o Usuario
-            print("Cadastrando um usuario...")
-            nome_completo = input("Nome: ")
-            ra = input("Email: ")
-            se = input("Senha: ")
+            print("Realizando o cadastro do usuario...")
+            nome_completo = input("Digite seu Nome: ")
+            ra = input(" Informe o Email: ")
+            se = input(" Insira a Senha: ")
             est1 = Usuario.create(nome=nome_completo, email=ra, senha=se)
     
-        elif(opcao == 2):
+        elif(opcao_1 == 2):
             #Listar
             lista=Usuario.select()
             if(len(lista) > 0):
                 for u in lista:
                     print(u)
             else:
-                print("Nenhum usuario")
+                print("Nenhum usuario cadastrado ainda")
 
-        elif(opcao == 3):
+        elif(opcao_1 == 3):
             #Editar
             opcao = int(input("Informe o id do usuario"))
             usu = Usuario.get_or_none(Usuario.id == opcao)
@@ -60,10 +61,10 @@ while(opcao !=4):
             else:
                 print("Não existe")
 
-        elif(opcao == 4): 
+        elif(opcao_1 == 4): 
             #Excluir
-            opcao = int(input("Informe o id do usuario"))
-            usu = Usuario.get_or_none(Usuario.id == opcao)
+            codigo = int(input("Informe o id do usuario"))
+            usu = Usuario.get_or_none(Usuario.id == codigo)
 
             if(usu):
                 print("Nome atual:", usu.nome)
@@ -77,3 +78,10 @@ while(opcao !=4):
             else:
                 print("Não existe")
             pass
+
+    elif(opcao == 2):
+
+        print("1- Cadastrar um tema: ")
+        print("2- Mostrar temas já cadastrados ")
+        print("3- Editar a lista de temas")
+        print("4- Excluir tema")

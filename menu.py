@@ -63,13 +63,13 @@ while(opcao !=4):
 
         elif(opcao_1 == 4): 
             #Excluir
-            codigo = int(input("Informe o id do usuario"))
+            codigo = int(input("Informe o id do usuario: "))
             usu = Usuario.get_or_none(Usuario.id == codigo)
 
             if(usu):
                 print("Nome atual:", usu.nome)
                 print("Email atual:", usu.email)
-                sn = int(input("Digita 1 para deletar ou 2 para não deletar"))
+                sn = int(input("Digita 1 para deletar ou 2 para não deletar :"))
 
                 if(sn == 1):
                     usu.delete_instance()
@@ -109,7 +109,7 @@ while(opcao !=4):
             
             if(usu):    
                 
-                print("Nome do tema atual:", usu.nome)
+                print("Nome do tema atual: ", usu.nome)
                 nome_completo = input("Deixe vazio ou informe o novo tema: ")
                 if(nome_completo != ""):
                     usu.nome = nome_completo
@@ -125,8 +125,8 @@ while(opcao !=4):
             usu = Tema.get_or_none(Tema.id == codigo)
 
             if(usu):
-                print("Nome do tema atual:", usu.nome)
-                sn = int(input("Digita 1 para deletar ou 2 para não deletar"))
+                print("Nome do tema atual: ", usu.nome)
+                sn = int(input("Digita 1 para deletar ou 2 para não deletar: "))
 
                 if(sn == 1):
                     usu.delete_instance()

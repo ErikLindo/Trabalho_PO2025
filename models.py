@@ -25,6 +25,8 @@ class Arte(MinhaBase):
     artista = ForeignKeyField(Usuario)
     tipo = ForeignKeyField(Tema)
     descricao = CharField()
+    def __str__(self):
+        return f"[{self.id}] {self.artista} --- {self.tipo} --- {self.descricao}"
 
 
 # Depois de criar todas as suas classes

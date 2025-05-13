@@ -1,4 +1,4 @@
-from models import Usuario, Tema
+from models import Usuario, Tema, Arte
 
 opcao = True
 while(opcao !=4):
@@ -38,7 +38,12 @@ while(opcao !=4):
             #Editar
             codigo = int(input("Informe o id do usuario: "))
             usu = Usuario.get_or_none(Usuario.id == codigo)
-            
+            cont = 0
+            while(cont != 1):
+                print("Nome atual:", usu.nome)
+                print("Email atual:", usu.email)
+                print("Senha atual:", usu.senha)
+                cont = int (input("Esse usuario que você quer?(Digita 1 para confimar ou deixe vazio para não confimar)"))
             if(usu):    
                 
                 print("Nome atual:", usu.nome)
@@ -69,7 +74,7 @@ while(opcao !=4):
             if(usu):
                 print("Nome atual:", usu.nome)
                 print("Email atual:", usu.email)
-                sn = int(input("Digita 1 para deletar ou 2 para não deletar :"))
+                sn = int(input("Digita 1 para deletar ou 2 para não deletar:"))
 
                 if(sn == 1):
                     usu.delete_instance()
@@ -134,3 +139,85 @@ while(opcao !=4):
             else:
                 print("Não existe")
             pass
+
+    elif(opcao == 3):
+        print("1- Cadastrar o artista: ")
+        print("2- Mostrar arte já cadastrados ")
+        print("3- Editar a descrição de arte")
+        print("4- Excluir a descrição")
+        opcao_3 = int(input("Selecione a opção desejada: "))
+
+        if(opcao_3==1):
+            #usuario
+            cont=0
+            while(cont != 1):
+                codi = int(input("Informe o id do usuario: "))
+                us = Usuario.get_or_none(Usuario.id == codi)
+                
+                if(us):
+                    print("Nome atual:", us.nome)
+                    print("Email atual:", us.email)
+                    cont = int (input("Esse usuario que você quer?(Digita 1 para confimar ou 2 para não): "))
+                else:
+                    print("Usuário não encontrado...")
+                
+
+            #tema
+            cont2=0
+            while(cont2 != 1):
+                codi2 = int(input("Informe o id do tema: "))
+                us2 = Tema.get_or_none(Tema.id == codi2)
+                
+                if(us2):
+                    print("Nome do tema: ", us2.nome)
+                    cont2 = int (input("Esse usuario que você quer?(Digita 1 para confimar ou 2 para não): "))
+                else:
+                    print("Tema não encontrado..")
+
+                         
+            descricao = input("Digita a descrição da arte: ")
+
+            arte = Arte.create(artista = us, tipo= us2, descricao= descricao)
+        
+        elif(opcao_3 == 2):
+
+            lista= Arte.select()
+            if(len(lista) > 0):
+                for u in lista:
+                    print(u)
+            else:
+                print("Nenhuma artista cadastrada ainda")
+
+        elif(opcao_3 == 3):
+            #Editar
+            codigo = int(input("Informe o id da arte relacionada ao usuario: "))
+            arte = Arte.get_or_none(Arte.id == codigo)
+
+            if(arte):    
+                
+                print("Descrição do artista: ", arte.descricao)
+                d_completo = input("Deixe vazio ou informe a nova descrição: ")
+                if(d_completo != ""):
+                    arte.descricao= d_completo
+                
+
+                arte.save()
+
+            else:
+                print("Não existe")
+
+        elif(opcao_3 == 4): 
+            #Excluir
+            codigo = int(input("Informe o id da arte: "))
+            arte = Arte.get_or_none(Arte.id == codigo)
+
+            if(arte):
+                print("Nome da arte desejada: ", arte.descricao)
+                sn = int(input("Digita 1 para deletar ou 2 para não deletar: "))
+
+                if(sn == 1):
+                    arte.delete_instance()
+
+            else:
+                print("Não existe")
+            pass        

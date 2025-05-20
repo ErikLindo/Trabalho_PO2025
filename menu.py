@@ -43,7 +43,7 @@ while(opcao !=4):
                 print("Nome atual:", usu.nome)
                 print("Email atual:", usu.email)
                 print("Senha atual:", usu.senha)
-                cont = int (input("Esse usuario que você quer?(Digita 1 para confimar ou deixe vazio para não confimar)"))
+                cont = int (input("Esse usuario que você quer?(Digita 1 para confimar ou deixe vazio para não confimar): "))
             if(usu):    
                 
                 print("Nome atual:", usu.nome)
@@ -86,8 +86,8 @@ while(opcao !=4):
 
     elif(opcao == 2):
 
-        print("1- Cadastrar um tema: ")
-        print("2- Mostrar temas já cadastrados ")
+        print("1- Cadastrar um tema")
+        print("2- Mostrar temas já cadastrados")
         print("3- Editar a lista de temas")
         print("4- Excluir tema")
         opcao_2 = int(input("Selecione a opção desejada: "))
@@ -141,8 +141,8 @@ while(opcao !=4):
             pass
 
     elif(opcao == 3):
-        print("1- Cadastrar o artista: ")
-        print("2- Mostrar arte já cadastrados ")
+        print("1- Cadastrar o artista")
+        print("2- Mostrar arte já cadastrados")
         print("3- Editar a descrição de arte")
         print("4- Excluir a descrição")
         opcao_3 = int(input("Selecione a opção desejada: "))
@@ -170,7 +170,7 @@ while(opcao !=4):
                 
                 if(us2):
                     print("Nome do tema: ", us2.nome)
-                    cont2 = int (input("Esse usuario que você quer?(Digita 1 para confimar ou 2 para não): "))
+                    cont2 = int (input("Esse tema que você quer?(Digita 1 para confimar ou 2 para não): "))
                 else:
                     print("Tema não encontrado..")
 
